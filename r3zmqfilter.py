@@ -1,4 +1,11 @@
 
+# None filter:
+#class r3zmqfilter():
+#    def do(self, structname, structdata):
+#         return structname
+#
+
+# Doom-Button filter:
 class r3zmqfilter():
     def do(self, structname, structdata):
         if structname == "BoreDoomButtonPressEvent":
