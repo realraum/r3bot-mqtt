@@ -94,7 +94,7 @@ class R3zmq(callbacks.Plugin):
             self.filter = r3zmqfilter()
 
         def notifyIrc(self, structname, structdata):
-            msg = filter.do(structname, structdata)
+            msg = self.filter.do(structname, structdata)
             if msg is None or len(msg) < 0:
                 return
             for IRC in world.ircs:
