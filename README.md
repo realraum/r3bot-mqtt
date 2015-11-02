@@ -34,3 +34,16 @@ load R3zmq
 ```
 
 And you are done.
+
+## Configuration
+
+You can get all configuraiton-parameters via the ```config list plugins.R3zmq``` command.
+
+* plugins.R3zmq.zmqbroker - URI of your zeromq's broker
+
+You can set them either in your Limnoria configuration or via the bot's cli:
+
+```
+<user> config plugins.R3zmq.zmqbroker tcp://zmqbroker.realraum.at:4244
+[bot] The operation succeeded.
+```
