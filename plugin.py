@@ -97,17 +97,16 @@ class R3zmq(callbacks.Plugin):
             msg = filter.do(structname, structdata)
             if msg is None or len(msg) < 0:
                 return
-             for IRC in world.ircs:
-                    if IRC.network == self.network:
-                        try:
-                            IRC.queueMsg(
-                                ircmsgs.privmsg(self.channel, msg))
-                        except Exception as e:
-                            traceback.print_exc(e)
+            for IRC in world.ircs:
+                if IRC.network == self.network:
+                    try:
+                        IRC.queueMsg(
+                            ircmsgs.privmsg(self.channel, msg))
+                    except Exception as e:
+                        traceback.print_exc(e)
 
         def run(self):
             self.zmqhandler.zmqloop(self.notifyIrc)
-
 
     def die(self):
         for thread in self.listenerThreads:
@@ -120,4 +119,3 @@ Class = R3zmq
 
 
 # vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:
-
