@@ -43,14 +43,13 @@ def configure(advanced):
     from supybot.questions import expect, anything, something, yn
     conf.registerPlugin('R3zmq', True)
 
-
-Listener = conf.registerPlugin('R3zmq')
+R3zmq = conf.registerPlugin('R3zmq')
 # This is where your configuration variables (if any) should go.  For example:
 # conf.registerGlobalValue(Listener, 'someConfigVariableName',
 #     registry.Boolean(False, """Help for someConfigVariableName."""))
 
 conf.registerGlobalValue(R3zmq, 'zmqbroker',
-    registry.String('[]', _("""URI of your zmq broker.
+    registry.String('tcp://zmqbroker.realraum.at:4244', _("""URI of your zmq broker.
     For example: tcp://zmqbroker.realraum.at:4244""")))
 
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
