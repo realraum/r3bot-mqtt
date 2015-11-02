@@ -1,0 +1,15 @@
+Got data: BoreDoomButtonPressEvent:{'Ts': 1446420382}
+
+Got data: DoorCommandEvent:{'Using': 'Card', 'Who': 'stefan', 'Command': 'toggle', 'Ts': 1446420702}
+Got data: DoorLockUpdate:{'Locked': True, 'Ts': 1446420706}
+
+Got data: PresenceUpdate:{'Ts': 1446420706, 'Present': False}
+
+Got data: DoorCommandEvent:{'Using': 'Card', 'Who': 'stefan', 'Command': 'toggle', 'Ts': 1446420712}
+Got data: DoorLockUpdate:{'Locked': False, 'Ts': 1446420715}
+
+Got data: PresenceUpdate:{'Ts': 1446420715, 'Present': True}
+
+Got data: DoorAjarUpdate:{'Shut': False, 'Ts': 1446420955}
+Got data: DoorAjarUpdate:{'Shut': True, 'Ts': 1446420963}
+
