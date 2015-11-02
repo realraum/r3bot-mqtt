@@ -45,7 +45,9 @@ import supybot.ircmsgs as ircmsgs
 import supybot.ircutils as ircutils
 import supybot.registry as registry
 import supybot.callbacks as callbacks
+
 from r3zmq import r3zmq
+from r3zmqfilter import r3zmqfilter
 
 from supybot.i18n import PluginInternationalization
 from supybot.i18n import internationalizeDocstring
@@ -89,13 +91,17 @@ class R3zmq(callbacks.Plugin):
             self.broker = broker
             self.buffer = ''
             self.zmqhandler = r3zmq()
+            self.filter = r3zmqfilter()
 
         def notifyIrc(self, structname, structdata):
+            msg = filter.do(structname, structdata)
+            if msg is None or len(msg) < 0:
+                return
              for IRC in world.ircs:
                     if IRC.network == self.network:
                         try:
                             IRC.queueMsg(
-                                ircmsgs.privmsg(self.channel, structname))
+                                ircmsgs.privmsg(self.channel, msg))
                         except Exception as e:
                             traceback.print_exc(e)
 
