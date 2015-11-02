@@ -13,3 +13,10 @@ Got data: PresenceUpdate:{'Ts': 1446420715, 'Present': True}
 Got data: DoorAjarUpdate:{'Shut': False, 'Ts': 1446420955}
 Got data: DoorAjarUpdate:{'Shut': True, 'Ts': 1446420963}
 
+DoorAjarUpdate: {'Shut': False, 'Ts': 1446434978}
+DoorAjarUpdate: {'Shut': True, 'Ts': 1446434980}
+DoorAjarUpdate: {'Shut': False, 'Ts': 1446434981}
+DoorAjarUpdate: {'Shut': True, 'Ts': 1446434982}
+
+BackdoorAjarUpdate: {'Shut': False, 'Ts': 1446435062}
+
