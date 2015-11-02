@@ -52,4 +52,10 @@ conf.registerGlobalValue(R3zmq, 'zmqbroker',
     registry.String('tcp://zmqbroker.realraum.at:4244', _("""URI of your zmq broker.
     For example: tcp://zmqbroker.realraum.at:4244""")))
 
+conf.registerGlobalValue(R3zmq, 'network',
+    registry.String('oftc', _("""Network to which the events are reported.""")))
+conf.registerGlobalValue(R3zmq, 'channel',
+    registry.String('#realraum-test', _("""Channel to which the events are reported.""")))
+
+
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:

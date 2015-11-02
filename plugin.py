@@ -66,13 +66,15 @@ class R3zmq(callbacks.Plugin):
 
     def _loadFromConfig(self, name=None):
         broker = self.registryValue('zmqbroker')
+        network = self.registryValue('network')
+        channel = self.registryValue('channel')
         for thread in self.listenerThreads:
             thread.zmqhandler.active = False
         time.sleep(2)
         self.listenerThreads = []
         try:
             log.info('Starting zmq listener thread: %s' % broker)
-            thread = self.ListeningThread('oftc', '#realraum-test', broker)
+            thread = self.ListeningThread(network, channel, broker)
             thread.start()
             self.listenerThreads.append(thread)
         except TypeError:
