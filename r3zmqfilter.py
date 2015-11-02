@@ -1,4 +1,3 @@
-import ast
 
 # None filter:
 # class r3zmqfilter():
@@ -30,4 +29,4 @@ class r3zmqfilter():
             else:
                 return "Backdoor opened."
 
-        #return eventname + ": " + str(eventdata)
+        return eventname + ": " + str(eventdata)
