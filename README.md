@@ -34,3 +34,19 @@ load R3zmq
 ```
 
 And you are done.
+
+## Configuration
+
+You can get all configuraiton-parameters via the ```config list plugins.R3zmq``` command.
+
+* ```plugins.R3zmq.zmqbroker``` - URI of your zeromq's broker
+* ```plugins.R3zmq.network``` - IRC Network to which the events are reported.
+* ```plugins.R3zmq.channel``` - IRC Channel to which the events are reported.
+
+
+You can set them either in your Limnoria configuration or via the bot's cli:
+
+```
+<user> config plugins.R3zmq.zmqbroker tcp://zmqbroker.realraum.at:4244
+[bot] The operation succeeded.
+```
