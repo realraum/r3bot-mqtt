@@ -8,6 +8,7 @@ import zmq.utils.jsonapi as json
 import zmq
 import traceback
 import time
+from r3zmqfilter import r3zmqfilter
 ########################
 # r3zmq listener
 # by verr
@@ -59,11 +60,8 @@ class r3zmq():
             time.sleep(5)
 
 def zmqlistener(structname, dictdata):
-    if structname is "BoreDoomButtonPressEvent":
-        print "someone is bored ... "
-        #  Dooom! The button has been pressed! Propably someone is bored and in need of company! ;-)
-    else:
-        print "Got data: " + structname + ":"+ str(dictdata)
+    filter = r3zmqfilter()
+    print filter.do(structname, dictdata)
 
 if __name__ == "__main__":
     z = r3zmq()
