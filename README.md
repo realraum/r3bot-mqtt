@@ -50,3 +50,7 @@ You can set them either in your Limnoria configuration or via the bot's cli:
 <user> config plugins.R3zmq.zmqbroker tcp://zmqbroker.realraum.at:4244
 [bot] The operation succeeded.
 ```
+
+## Filter
+
+Your zeromq traffic may be to verbatim to relay it directly to your channel. If so you can filter/format the events by implementing a filter in *r3zmqfilter.py*.
