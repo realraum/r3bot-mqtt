@@ -29,4 +29,4 @@ class r3zmqfilter():
             else:
                 return "Backdoor opened."
 
-        return eventname + ": " + str(eventdata)
+        #return eventname + ": " + str(eventdata)
