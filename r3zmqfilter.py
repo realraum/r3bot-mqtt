@@ -23,10 +23,10 @@ class r3zmqfilter():
             else:
                 return "Realraum now closed ..."
 
-        elif eventname == "BackdoorAjarUpdate":
-            if eventdata['Shut']:
-                return "Backdoor closed."
-            else:
-                return "Backdoor opened."
+        #elif eventname == "BackdoorAjarUpdate":
+        #    if eventdata['Shut']:
+        #        return "Backdoor closed."
+        #    else:
+        #        return "Backdoor opened."
 
         #return eventname + ": " + str(eventdata)
