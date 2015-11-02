@@ -62,24 +62,16 @@ class R3zmq(callbacks.Plugin):
         self.__parent = super(R3zmq, self)
         self.__parent.__init__(irc)
         self.listenerThreads = []
-        try:
-            conf.supybot.plugins.R3zmq.relays.addCallback(
-                self._loadFromConfig)
-        except registry.NonExistentRegistryEntry:
-            log.error("Your version of Supybot is not compatible with "
-                      "configuration hooks. So, R3zmq won't be able "
-                      "to reload the configuration if you use the Config "
-                      "plugin.")
         self._loadFromConfig()
 
     def _loadFromConfig(self, name=None):
         broker = self.registryValue('zmqbroker')
         for thread in self.listenerThreads:
-            thread.active = False
+            thread.zmqhandler.active = False
         time.sleep(2)
         self.listenerThreads = []
         try:
-            log.debug('Starting zmq listener thread: %s' % broker)
+            log.info('Starting zmq listener thread: %s' % broker)
             thread = self.ListeningThread('oftc', '#realraum-test', broker)
             thread.start()
             self.listenerThreads.append(thread)
@@ -106,12 +98,13 @@ class R3zmq(callbacks.Plugin):
                             traceback.print_exc(e)
 
         def run(self):
-            self.zmqhandler.zmqloop(notifyIrc)
+            self.zmqhandler.zmqloop(self.notifyIrc)
 
 
     def die(self):
         for thread in self.listenerThreads:
             thread.zmqhandler.active = False
+            log.info('shutdown zmqhandler %s' % thread.broker)
         self.listenerThreads = []
         time.sleep(2)
 
