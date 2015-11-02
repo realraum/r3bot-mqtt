@@ -20,7 +20,21 @@ Unpacking objects: 100% (19/19), done.
 Checking connectivity... done.
 ```
 
-Then tell your Limnoria bot to load it:
+Now you need to install the required libraries (see requirements.txt), either via pip ...
+
+```
+% cd R3zmq 
+% sudo pip install -r requirements.txt
+
+```
+
+... or your package manager, for example:
+
+```
+% sudo apt-get install python-zmq
+```
+
+Afterwards tell your Limnoria bot to load the plugin:
 
 ```
 load R3zmq
