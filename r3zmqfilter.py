@@ -17,11 +17,11 @@ class r3zmqfilter():
         #elif eventname == "TempSensorUpdate":
         #    return "Temperature changed to " + str(eventdata['Value'])
 
-        elif eventname == "PresenceUpdate":
-            if eventdata['Present']:
-                return "Realraum now open! \o/"
-            else:
-                return "Realraum now closed ..."
+        #elif eventname == "PresenceUpdate":
+        #    if eventdata['Present']:
+        #        return "Realraum now open! \o/"
+        #    else:
+        #        return "Realraum now closed ..."
 
         #elif eventname == "BackdoorAjarUpdate":
         #    if eventdata['Shut']:
