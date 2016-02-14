@@ -11,7 +11,7 @@ Install the plugin by cloning it into the *R3mqtt* directory in your Limnoria's 
 
 ```
 % cd runbot/plugins 
-% git clone https://github.com/realraum/r3bot-zmq.git R3mqtt
+% git clone https://github.com/realraum/r3bot-mqtt.git R3mqtt
 ```
 
 Now you need to install the required libraries (see requirements.txt), either via pip ...
