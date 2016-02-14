@@ -46,41 +46,41 @@ import supybot.ircutils as ircutils
 import supybot.registry as registry
 import supybot.callbacks as callbacks
 
-from r3zmq import r3zmq
-from r3zmqfilter import r3zmqfilter
+from r3mqtt import r3mqtt
+from r3mqttfilter import r3mqttfilter
 
 from supybot.i18n import PluginInternationalization
 from supybot.i18n import internationalizeDocstring
-_ = PluginInternationalization('R3zmq')
+_ = PluginInternationalization('R3mqtt')
 
 
-class R3zmq(callbacks.Plugin):
+class R3mqtt(callbacks.Plugin):
 
-    """Add the help for "@plugin help R3zmq" here
+    """Add the help for "@plugin help R3mqtt" here
     This should describe *how* to use this plugin."""
     threaded = True
 
     def __init__(self, irc):
-        self.__parent = super(R3zmq, self)
+        self.__parent = super(R3mqtt, self)
         self.__parent.__init__(irc)
         self.listenerThreads = []
         self._loadFromConfig()
 
     def _loadFromConfig(self, name=None):
-        broker = self.registryValue('zmqbroker')
+        broker = self.registryValue('mqttbroker')
         network = self.registryValue('network')
         channel = self.registryValue('channel')
         for thread in self.listenerThreads:
-            thread.zmqhandler.active = False
+            thread.mqtthandler.active = False
         time.sleep(2)
         self.listenerThreads = []
         try:
-            log.info('Starting zmq listener thread: %s' % broker)
+            log.info('Starting mqtt listener thread: %s' % broker)
             thread = self.ListeningThread(network, channel, broker)
             thread.start()
             self.listenerThreads.append(thread)
         except TypeError:
-            irc.error('Cannot load zmq: %s' % broker)
+            irc.error('Cannot load mqtt: %s' % broker)
 
     class ListeningThread(threading.Thread):
 
@@ -90,11 +90,11 @@ class R3zmq(callbacks.Plugin):
             self.channel = channel
             self.broker = broker
             self.buffer = ''
-            self.zmqhandler = r3zmq()
-            self.filter = r3zmqfilter()
+            self.mqtthandler = r3mqtt()
+            self.filter = r3mqttfilter()
 
-        def notifyIrc(self, structname, structdata):
-            msg = self.filter.do(structname, structdata)
+        def notifyIrc(self, mqtttopic, structdata):
+            msg = self.filter.do(mqtttopic, structdata)
             if msg is None or len(msg) < 0:
                 return
             for IRC in world.ircs:
@@ -106,16 +106,16 @@ class R3zmq(callbacks.Plugin):
                         traceback.print_exc(e)
 
         def run(self):
-            self.zmqhandler.zmqloop(self.notifyIrc)
+            self.mqtthandler.mqtttloop(self.notifyIrc)
 
     def die(self):
         for thread in self.listenerThreads:
-            thread.zmqhandler.active = False
-            log.info('shutdown zmqhandler %s' % thread.broker)
+            thread.mqtthandler.active = False
+            log.info('shutdown mqtthandler %s' % thread.broker)
         self.listenerThreads = []
         time.sleep(2)
 
-Class = R3zmq
+Class = R3mqtt
 
 
 # vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:

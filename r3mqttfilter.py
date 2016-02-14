@@ -1,6 +1,6 @@
 
 # None filter:
-# class r3zmqfilter():
+# class r3mqttfilter():
 #    def do(self, eventname, eventdata):
 #         return eventname
 #
@@ -8,22 +8,22 @@
 # Doom-Button filter:
 
 
-class r3zmqfilter():
+class r3mqttfilter():
 
     def do(self, eventname, eventdata):
-        if eventname == "BoreDoomButtonPressEvent":
+        if eventname.endswith("/boredoombuttonpressed"):
             return "Dooom! The button has been pressed! Propably someone is bored and in need of company! ;-)"
 
-        #elif eventname == "TempSensorUpdate":
+        #elif eventname.endswith("/temperature"):
         #    return "Temperature changed to " + str(eventdata['Value'])
 
-        #elif eventname == "PresenceUpdate":
+        #elif eventname.endswith("/presence"):
         #    if eventdata['Present']:
         #        return "Realraum now open! \o/"
         #    else:
         #        return "Realraum now closed ..."
 
-        #elif eventname == "BackdoorAjarUpdate":
+        #elif eventname.endswith("/backdoorcx/ajar"):
         #    if eventdata['Shut']:
         #        return "Backdoor closed."
         #    else:

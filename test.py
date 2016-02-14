@@ -31,7 +31,7 @@
 from supybot.test import *
 
 class ListenerTestCase(PluginTestCase):
-    plugins = ('R3zmq',)
+    plugins = ('R3mqtt',)
 
 
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:

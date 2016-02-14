@@ -1,2 +1,2 @@
-pyzmq==14.4.1
+paho-mqtt==1.1
 

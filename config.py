@@ -33,7 +33,7 @@ import supybot.registry as registry
 
 from supybot.i18n import PluginInternationalization
 from supybot.i18n import internationalizeDocstring
-_ = PluginInternationalization('R3zmq')
+_ = PluginInternationalization('R3mqtt')
 
 def configure(advanced):
     # This will be called by supybot to configure this module.  advanced is
@@ -41,20 +41,20 @@ def configure(advanced):
     # user or not.  You should effect your configuration by manipulating the
     # registry as appropriate.
     from supybot.questions import expect, anything, something, yn
-    conf.registerPlugin('R3zmq', True)
+    conf.registerPlugin('R3mqtt', True)
 
-R3zmq = conf.registerPlugin('R3zmq')
+R3mqtt = conf.registerPlugin('R3mqtt')
 # This is where your configuration variables (if any) should go.  For example:
 # conf.registerGlobalValue(Listener, 'someConfigVariableName',
 #     registry.Boolean(False, """Help for someConfigVariableName."""))
 
-conf.registerGlobalValue(R3zmq, 'zmqbroker',
-    registry.String('tcp://zmqbroker.realraum.at:4244', _("""URI of your zmq broker.
-    For example: tcp://zmqbroker.realraum.at:4244""")))
+conf.registerGlobalValue(R3mqtt, 'mqttbroker',
+    registry.String('mqtt.realraum.at', _("""Host of your mqtt broker.
+    For example: mqtt.realraum.at""")))
 
-conf.registerGlobalValue(R3zmq, 'network',
+conf.registerGlobalValue(R3mqtt, 'network',
     registry.String('oftc', "Network to which the events are reported."))
-conf.registerGlobalValue(R3zmq, 'channel',
+conf.registerGlobalValue(R3mqtt, 'channel',
     registry.String('#realraum-test', "Channel to which the events are reported."))
 
 
