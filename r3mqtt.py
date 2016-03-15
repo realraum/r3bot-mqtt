@@ -42,7 +42,7 @@ class r3mqtt():
 
     def recvMQTTMsg(self, client, userdata, msg):
         (mqtttopic, dictdata) = self.decodeR3Message(msg.topic, msg.payload)
-        listener(mqtttopic, dictdata)
+        self.listener(mqtttopic, dictdata)
 
     def disconnectFromBroker(self):
         try:
@@ -56,6 +56,7 @@ class r3mqtt():
         sys.exit(0)
 
     def mqtttloop(self, listener):
+        self.listener = listener
         while self.active :
             try:
                 self.connectToBroker()
