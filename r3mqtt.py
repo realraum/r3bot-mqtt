@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import os
 import os.path
 import sys
@@ -8,11 +9,13 @@ import json
 import paho.mqtt.client as mqtt
 import traceback
 import time
-from .r3mqttfilter import r3mqttfilter
-#
-# r3mqtt listener
-# by verr
-# based on code by xro
+from r3mqttfilter import r3mqttfilter
+
+"""
+r3mqtt listener
+by verr
+based on code by xro
+"""
 
 
 class r3mqtt():
@@ -20,10 +23,10 @@ class r3mqtt():
     def __init__(
         self,
         broker="mqtt.realraum.at",
-     brokerport=1883,
-     clientid="r3bot-mqtt",
-     subscriptions=[("realraum/+/boredoombuttonpressed",
-                     1)]):
+        brokerport=1883,
+        clientid="r3bot-mqtt",
+        subscriptions=[("realraum/+/boredoombuttonpressed",
+                        1)]):
         self.broker = broker
         self.brokerport = brokerport
         self.client = None
@@ -45,7 +48,7 @@ class r3mqtt():
         try:
             return (mqtttopic, json.loads(payload.decode("utf-8")))
         except Exception as e:
-            logging.debug("Error decodeR3Payload:" + str(e))
+            print ("Error decodeR3Payload:" + str(e))
             return ("", {})
 
     def recvMQTTMsg(self, client, userdata, msg):
@@ -77,12 +80,20 @@ class r3mqtt():
                 time.sleep(5)
 
 
-def mqttlistener(mqtttopic, dictdata):
-    filter = r3mqttfilter()
-    print filter.do(mqtttopic, dictdata)
+def mqttlistener(mqtttopic, dictdata, filter):
+    res = filter.do(mqtttopic, dictdata)
+    if res is None:
+        print '[r3mqtt] filter filtered event.'
+    else:
+        print '[r3mqtt]', res
 
 if __name__ == "__main__":
-    z = r3mqtt()
+    print 'running r3mqtt demo ...'
+    filter = r3mqttfilter()
+    z = r3mqtt(subscriptions=filter.subscriptions)
     signal.signal(signal.SIGINT, z.exitHandler)
     signal.signal(signal.SIGQUIT, z.exitHandler)
-    z.mqtttloop(mqttlistener)
+
+    def handler(topic, data):
+        mqttlistener(topic, data, filter)
+    z.mqtttloop(handler)
