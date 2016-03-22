@@ -1,4 +1,4 @@
-###
+#
 # Copyright (c) 2015, verr/realraum.at
 # All rights reserved.
 #
@@ -26,7 +26,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-###
+#
 
 """
 Add a description of the plugin (to be presented to the user inside the wizard)
@@ -48,12 +48,12 @@ __author__ = supybot.authors.unknown
 __contributors__ = {}
 
 # This is a url where the most recent plugin package can be downloaded.
-__url__ = '' # 'http://supybot.com/Members/yourname/Listener/download'
+__url__ = ''  # 'http://supybot.com/Members/yourname/Listener/download'
 
 from . import config
 from . import plugin
 from imp import reload
-reload(plugin) # In case we're being reloaded.
+reload(plugin)  # In case we're being reloaded.
 # Add more reloads here if you add third-party modules and want them to be
 # reloaded when this plugin is reloaded.  Don't forget to import them as well!
 

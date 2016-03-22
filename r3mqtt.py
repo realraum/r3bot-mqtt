@@ -8,14 +8,22 @@ import json
 import paho.mqtt.client as mqtt
 import traceback
 import time
-from r3mqttfilter import r3mqttfilter
-########################
+from .r3mqttfilter import r3mqttfilter
+#
 # r3mqtt listener
 # by verr
 # based on code by xro
 
+
 class r3mqtt():
-    def __init__(self, broker="mqtt.realraum.at", brokerport=1883 , clientid="r3bot-mqtt", subscriptions=[("realraum/+/boredoombuttonpressed",1)]):
+
+    def __init__(
+        self,
+        broker="mqtt.realraum.at",
+     brokerport=1883,
+     clientid="r3bot-mqtt",
+     subscriptions=[("realraum/+/boredoombuttonpressed",
+                     1)]):
         self.broker = broker
         self.brokerport = brokerport
         self.client = None
@@ -37,8 +45,8 @@ class r3mqtt():
         try:
             return (mqtttopic, json.loads(payload.decode("utf-8")))
         except Exception as e:
-            logging.debug("Error decodeR3Payload:"+str(e))
-            return ("",{})
+            logging.debug("Error decodeR3Payload:" + str(e))
+            return ("", {})
 
     def recvMQTTMsg(self, client, userdata, msg):
         (mqtttopic, dictdata) = self.decodeR3Message(msg.topic, msg.payload)
@@ -57,16 +65,17 @@ class r3mqtt():
 
     def mqtttloop(self, listener):
         self.listener = listener
-        while self.active :
+        while self.active:
             try:
                 self.connectToBroker()
                 while self.active:
                     self.client.loop()
-            except Exception, ex:
-                print "main: "+str(ex)
+            except Exception as ex:
+                print "main: " + str(ex)
                 traceback.print_exc(file=sys.stdout)
                 self.disconnectFromBroker()
                 time.sleep(5)
+
 
 def mqttlistener(mqtttopic, dictdata):
     filter = r3mqttfilter()
@@ -77,4 +86,3 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, z.exitHandler)
     signal.signal(signal.SIGQUIT, z.exitHandler)
     z.mqtttloop(mqttlistener)
-

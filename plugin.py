@@ -1,4 +1,4 @@
-###
+#
 # Copyright (c) 2010, quantumlemur
 # Copyright (c) 2012, Valentin Lorentz
 # Copyright (c) 2015, verr/realraum.at
@@ -28,7 +28,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-###
+#
 
 import json
 import time
@@ -46,8 +46,8 @@ import supybot.ircutils as ircutils
 import supybot.registry as registry
 import supybot.callbacks as callbacks
 
-from r3mqtt import r3mqtt
-from r3mqttfilter import r3mqttfilter
+from .r3mqtt import r3mqtt
+from .r3mqttfilter import r3mqttfilter
 
 from supybot.i18n import PluginInternationalization
 from supybot.i18n import internationalizeDocstring

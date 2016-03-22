@@ -1,4 +1,4 @@
-###
+#
 # Copyright (c) 2015, verr/realraum.at
 # All rights reserved.
 #
@@ -26,7 +26,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-###
+#
 
 import supybot.conf as conf
 import supybot.registry as registry
@@ -34,6 +34,7 @@ import supybot.registry as registry
 from supybot.i18n import PluginInternationalization
 from supybot.i18n import internationalizeDocstring
 _ = PluginInternationalization('R3mqtt')
+
 
 def configure(advanced):
     # This will be called by supybot to configure this module.  advanced is
@@ -49,13 +50,13 @@ R3mqtt = conf.registerPlugin('R3mqtt')
 #     registry.Boolean(False, """Help for someConfigVariableName."""))
 
 conf.registerGlobalValue(R3mqtt, 'mqttbroker',
-    registry.String('mqtt.realraum.at', _("""Host of your mqtt broker.
+                         registry.String('mqtt.realraum.at', _("""Host of your mqtt broker.
     For example: mqtt.realraum.at""")))
 
 conf.registerGlobalValue(R3mqtt, 'network',
-    registry.String('oftc', "Network to which the events are reported."))
+                         registry.String('oftc', "Network to which the events are reported."))
 conf.registerGlobalValue(R3mqtt, 'channel',
-    registry.String('#realraum-test', "Channel to which the events are reported."))
+                         registry.String('#realraum-test', "Channel to which the events are reported."))
 
 
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:

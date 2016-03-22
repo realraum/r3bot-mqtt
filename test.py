@@ -1,4 +1,4 @@
-###
+#
 # Copyright (c) 2015, verr/realraum.at
 # All rights reserved.
 #
@@ -26,9 +26,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-###
+#
 
 from supybot.test import *
+
 
 class ListenerTestCase(PluginTestCase):
     plugins = ('R3mqtt',)
