@@ -10,7 +10,11 @@
 
 class r3mqttfilter():
 
-    subscriptions = [("realraum/+/boredoombuttonpressed", 1)]
+    # static:
+    subscriptions = [
+        ("realraum/+/boredoombuttonpressed", 1),
+        ("realraum/pillar/illumination", 1)
+    ]
 
     def do(self, eventname, eventdata):
         eventname = eventname.strip()

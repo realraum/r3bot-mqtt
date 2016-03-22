@@ -90,8 +90,10 @@ class R3mqtt(callbacks.Plugin):
             self.channel = channel
             self.broker = broker
             self.buffer = ''
-            self.mqtthandler = r3mqtt()
             self.filter = r3mqttfilter()
+            print '[r3mqtt]', r3mqttfilter.subscriptions
+            self.mqtthandler = r3mqtt(
+                subscriptions=r3mqttfilter.subscriptions)
 
         def notifyIrc(self, mqtttopic, structdata):
             msg = self.filter.do(mqtttopic, structdata)
