@@ -53,10 +53,10 @@ conf.registerGlobalValue(R3mqtt, 'mqttbroker',
                          registry.String('mqtt.realraum.at', _("""Host of your mqtt broker.
     For example: mqtt.realraum.at""")))
 
-conf.registerGlobalValue(R3mqtt, 'network',
-                         registry.String('oftc', "Network to which the events are reported."))
-conf.registerGlobalValue(R3mqtt, 'channel',
-                         registry.String('#realraum-test', "Channel to which the events are reported."))
+conf.registerGlobalValue(R3mqtt, 'network', registry.String(
+    'oftc', "Network to which the events are reported."))
+conf.registerGlobalValue(R3mqtt, 'channel', registry.String(
+    '#realraum-test', "Channel to which the events are reported."))
 
 
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
