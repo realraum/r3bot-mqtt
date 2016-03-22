@@ -15,7 +15,7 @@ class r3mqttfilter():
         ("realraum/olgafreezer/overtemp", 1),
         ("realraum/olgafreezer/sensorlost", 1),
         ("realraum/backdoorcx/gasalert", 1),
-        ("realraum/backdoorcx/powerloss", 1)
+        # ("realraum/backdoorcx/powerloss", 1)
     ]
 
     def __init__(self):
